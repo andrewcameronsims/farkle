@@ -13,6 +13,10 @@ export default class Dice {
     return new Dice(0, ...values);
   }
 
+  size(): number {
+    return Object.values(this.rolls).reduce((a, b) => a + b, 0)
+  }
+
   contains(...values: number[]): boolean {
     const { rolls: otherRolls } = Dice.of(...values)
 

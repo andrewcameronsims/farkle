@@ -13,8 +13,7 @@ describe("Dice", () => {
     const dice = Dice.roll(6)
 
     it("initializes a set of `numDice` dice", () => {
-      const diceRolled = Object.values(dice.rolls).reduce((a, b) => a + b, 0)
-      expect(diceRolled).toEqual(6)
+      expect(dice.size()).toEqual(6)
     })
   })
 
