@@ -17,6 +17,25 @@ export default class Dice {
     return Object.values(this.rolls).reduce((a, b) => a + b, 0)
   }
 
+  keys(): number[] {
+    return Object
+            .keys(this.rolls)
+            .filter(rollKey => this.rolls[rollKey] > 0)
+            .map(rollKey => parseInt(rollKey))
+  }
+
+  values(): number[] {
+    const values: number[] = []
+
+    Object.keys(this.rolls).forEach((rollValue) => {
+      for (let i = 0; i < this.rolls[rollValue]; i++) {
+        values.push(parseInt(rollValue))
+      }
+    })
+
+    return values
+  }
+
   contains(...values: number[]): boolean {
     const { rolls: otherRolls } = Dice.of(...values)
 
