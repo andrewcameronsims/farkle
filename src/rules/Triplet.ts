@@ -1,7 +1,9 @@
 import { Rule, Result } from '../RuleSet'
-import Dice from '../Dice'
+import Dice from '../dice/Dice'
 
 export default class Triplet implements Rule {
+  score = 600
+
   apply(dice: Dice): Result {
     const triplet = Object.entries(dice.rolls).find(entry => entry[1] === 3)
     if (triplet) {

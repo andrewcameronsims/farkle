@@ -1,4 +1,4 @@
-import Dice from '../Dice'
+import Dice from '../dice/Dice'
 import TwoTriplets from './TwoTriplets'
 
 describe("TwoTriplets", () => {

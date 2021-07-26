@@ -1,4 +1,4 @@
-import Dice from '../Dice'
+import Dice from '../dice/Dice'
 import SixOfAKind from './SixOfAKind'
 
 describe("SixOfAKind", () => {

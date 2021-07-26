@@ -14,4 +14,4 @@ export const standardRules: Rule[] = [
   new OneOne(), new OneFive(), new Triplet(),
   new TwoTriplets(), new ThreePairs(), new FourOfAKind(),
   new FiveOfAKind(), new SixOfAKind(), new Straight()
-]
+].sort((a, b) => b.score - a.score)

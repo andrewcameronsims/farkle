@@ -1,5 +1,5 @@
 export default class Dice {
-  rolls: Record<string, number>
+  rolls: Record<number, number>
 
   static empty(): Dice {
     return new Dice()
@@ -19,16 +19,17 @@ export default class Dice {
 
   keys(): number[] {
     return Object
-            .keys(this.rolls)
-            .filter(rollKey => this.rolls[rollKey] > 0)
-            .map(rollKey => parseInt(rollKey))
+      .keys(this.rolls)
+      .map(rollKey => parseInt(rollKey))
+      .filter(rollKey => this.rolls[rollKey] > 0)
   }
 
   values(): number[] {
     const values: number[] = []
 
     Object.keys(this.rolls).forEach((rollValue) => {
-      for (let i = 0; i < this.rolls[rollValue]; i++) {
+      const value = parseInt(rollValue)
+      for (let i = 0; i < this.rolls[value]; i++) {
         values.push(parseInt(rollValue))
       }
     })
@@ -39,22 +40,29 @@ export default class Dice {
   contains(...values: number[]): boolean {
     const { rolls: otherRolls } = Dice.of(...values)
 
-    return Object.entries(otherRolls).every(([dieRoll, numRolls]) => this.rolls[dieRoll] >= numRolls)
+    return Object.entries(otherRolls).every(([dieRoll, numRolls]) => {
+      const key = parseInt(dieRoll)
+      return this.rolls[key] >= numRolls
+    })
   }
 
-  add(value: number): void {
-    this.rolls[value] = (this.rolls[value] || 0) + 1
+  add(...values: number[]): void {
+    values.forEach(value => {
+      this.rolls[value] = (this.rolls[value] || 0) + 1
+    })
   }
 
-  remove(value: number): void {
-    if (this.rolls[value] > 0) {
-      this.rolls[value] -= 1
-    } else {
-      throw new Error("No die of this value exists to remove")
-    }
+  remove(...values: number[]): void {
+    values.forEach(value => {
+      if (this.rolls[value] > 0) {
+        this.rolls[value] -= 1
+      } else {
+        throw new Error("No die of this value exists to remove")
+      }
+    })
   }
 
-  private constructor(numDice = 0, ...values: number[]) {
+  constructor(numDice = 0, ...values: number[]) {
     this.rolls = {}
 
     if (values.length > 0) {
