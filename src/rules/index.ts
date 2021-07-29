@@ -1,7 +1,7 @@
 import { Rule } from '../RuleSet'
 
-import OneOne from "./OneOne"
-import OneFive from "./OneFive"
+import OneOne from "./Ones"
+import OneFive from "./Fives"
 import Triplet from "./Triplet"
 import TwoTriplets from "./TwoTriplets"
 import ThreePairs from "./ThreePairs"
