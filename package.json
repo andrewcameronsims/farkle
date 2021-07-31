@@ -2,7 +2,7 @@
   "name": "farkle",
   "version": "1.0.0",
   "description": "Farkle dice game logic",
-  "main": "index.js",
+  "main": "main.ts",
   "author": "Andrew Sims",
   "license": "MIT",
   "scripts": {
